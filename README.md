@@ -32,7 +32,7 @@ The project follows the MVC (Model-View-Controller) architectural pattern and is
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/library-system-api.git](https://github.com/walterjaredco-source/CPE114-Final-Project
+git clone https://github.com/walterjaredco-source/CPE114-Final-Project
 cd library-system-api
 ```
 
