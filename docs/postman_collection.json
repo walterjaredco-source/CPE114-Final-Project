@@ -1,0 +1,259 @@
+{
+  "info": {
+    "name": "Library System API",
+    "description": "CPE 114 Final Project – Complete Library System REST API collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authors",
+      "item": [
+        {
+          "name": "Get All Authors",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/authors",
+            "description": "Returns all authors with their associated books."
+          }
+        },
+        {
+          "name": "Get Author By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/authors/1",
+            "description": "Returns a single author by ID including their books. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Create Author",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/authors",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jose Rizal\",\n  \"nationality\": \"Filipino\",\n  \"birthYear\": 1861\n}"
+            },
+            "description": "Creates a new author. Returns 201 on success, 400 if name is missing."
+          }
+        },
+        {
+          "name": "Update Author",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/api/authors/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationality\": \"Filipino\",\n  \"birthYear\": 1861\n}"
+            },
+            "description": "Updates an existing author. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Delete Author",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/authors/1",
+            "description": "Deletes an author by ID. Returns 404 if not found."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Get All Books",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/books",
+            "description": "Returns all books with author information."
+          }
+        },
+        {
+          "name": "Get Book By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/books/1",
+            "description": "Returns a single book with author and current borrowers. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/books",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Noli Me Tangere\",\n  \"isbn\": \"978-971-10-1456-0\",\n  \"genre\": \"Historical Fiction\",\n  \"publishedYear\": 1887,\n  \"copiesAvailable\": 3,\n  \"authorId\": 1\n}"
+            },
+            "description": "Creates a new book. Returns 201 on success, 400 if required fields are missing or ISBN is duplicate."
+          }
+        },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/api/books/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"copiesAvailable\": 5\n}"
+            },
+            "description": "Updates an existing book. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Delete Book",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/books/1",
+            "description": "Deletes a book by ID. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Get Borrow History for Book",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/books/1/borrows",
+            "description": "Relationship endpoint: returns the full borrow history for a specific book."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "Get All Members",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/members",
+            "description": "Returns all library members."
+          }
+        },
+        {
+          "name": "Get Member By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/members/1",
+            "description": "Returns a single member with their currently borrowed books. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Create Member",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/members",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Juan dela Cruz\",\n  \"email\": \"juan@example.com\",\n  \"phone\": \"09171234567\"\n}"
+            },
+            "description": "Creates a new library member. Returns 201 on success, 400 if name/email missing or email duplicate."
+          }
+        },
+        {
+          "name": "Update Member",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/api/members/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"09189876543\"\n}"
+            },
+            "description": "Updates an existing member. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Delete Member",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/members/1",
+            "description": "Deletes a member by ID. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Get Borrows for Member",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/members/1/borrows",
+            "description": "Relationship endpoint: returns all borrow records for a specific member."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Borrows",
+      "item": [
+        {
+          "name": "Get All Borrows",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/borrows",
+            "description": "Returns all borrow records with member and book details."
+          }
+        },
+        {
+          "name": "Get Borrow By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/borrows/1",
+            "description": "Returns a single borrow record with full member and book info. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Borrow a Book",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/borrows",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": 1,\n  \"bookId\": 1\n}"
+            },
+            "description": "Creates a new borrow record. Decrements available copies. Returns 400 if no copies available or already borrowed. Returns 201 on success."
+          }
+        },
+        {
+          "name": "Update Borrow Record",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/api/borrows/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"overdue\"\n}"
+            },
+            "description": "Updates a borrow record (e.g., mark as overdue). Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Delete Borrow Record",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/borrows/1",
+            "description": "Deletes a borrow record by ID. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Return a Book",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/borrows/1/return",
+            "description": "Relationship endpoint: marks a borrow record as returned, sets returnDate to today, and restores available copies. Returns 400 if already returned."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
